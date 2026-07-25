@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — chargeme.in</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <a href="index.html" class="logo">charge<span class="dot">&bull;</span>me</a>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="locator.html">Find a Charger</a>
+      <a href="installation.html">Home Installation</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  </nav>
+</header>
+
+<section style="padding-top:40px;">
+  <div class="wrap">
+    <div class="eyebrow">Contact</div>
+    <h2 class="section-title">Get a quote, or flag a station</h2>
+    <p class="section-sub">Fill this in for an installation quote, or to report a charging station that's wrong or missing from the locator.</p>
+
+    <div class="callout" style="margin-bottom:24px;">
+      <strong>Before this works:</strong> replace <code>YOUR_FORM_ID</code> below with a real
+      <a href="https://formspree.io" style="color:var(--current);">Formspree</a> form ID (free tier, no backend needed) —
+      see the setup steps in my reply.
+    </div>
+
+    <form class="contact" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div>
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required>
+      </div>
+      <div>
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="tel" required>
+      </div>
+      <div>
+        <label for="reason">What's this about?</label>
+        <select id="reason" name="reason">
+          <option>Home charger installation quote</option>
+          <option>Office / society installation</option>
+          <option>Report a wrong/missing station</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div>
+        <label for="message">Details</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div>
+      <strong>chargeme.in</strong>
+      <div class="fine">EV charging locator &amp; installation services, Ahmedabad.</div>
+    </div>
+    <div>
+      <div>[Business address — fill in]</div>
+      <div>[Phone] · [email]</div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

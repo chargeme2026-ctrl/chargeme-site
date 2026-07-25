@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>chargeme.in — EV Charging & Home Installation, Ahmedabad</title>
+<meta name="description" content="Find EV charging stations across Ahmedabad and get a home or office EV charger installed by a local team.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <a href="index.html" class="logo">charge<span class="dot">&bull;</span>me</a>
+    <div class="navlinks">
+      <a href="index.html" class="active">Home</a>
+      <a href="locator.html">Find a Charger</a>
+      <a href="installation.html">Home Installation</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Ahmedabad · EV Infrastructure</div>
+      <h1>Every road in this city can carry <span class="cur">current</span>.</h1>
+      <p class="lead">Locate public EV charging points across Ahmedabad, or get a charger installed at your home or workplace by a team based right here in the city.</p>
+      <div class="cta-row">
+        <a href="locator.html" class="btn btn-primary">Find a charging station</a>
+        <a href="installation.html" class="btn btn-ghost">Get a charger installed</a>
+      </div>
+    </div>
+    <div>
+      <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated map of Ahmedabad's road grid carrying an electric current from a vehicle to a charging point">
+        <defs>
+          <style>
+            .grid-line{ stroke:#2A415F; stroke-width:1.4; }
+            .artery{ stroke:#2A415F; stroke-width:2.2; }
+            .current-path{
+              stroke:#E3A857; stroke-width:3; fill:none;
+              stroke-dasharray:14 10; stroke-linecap:round;
+              animation:flow 2.4s linear infinite;
+            }
+            .node{ fill:#16283F; stroke:#4FD1C5; stroke-width:2; }
+            .node-pulse{ fill:#4FD1C5; opacity:0.55; animation:pulse 2.2s ease-out infinite; transform-origin:center; }
+            @keyframes flow{ to{ stroke-dashoffset:-48; } }
+            @keyframes pulse{ 0%{ transform:scale(0.6); opacity:0.6;} 100%{ transform:scale(2.4); opacity:0;} }
+          </style>
+        </defs>
+
+        <!-- grid -->
+        <g>
+          <line class="grid-line" x1="20" y1="60" x2="380" y2="60"/>
+          <line class="grid-line" x1="20" y1="120" x2="380" y2="120"/>
+          <line class="grid-line" x1="20" y1="180" x2="380" y2="180"/>
+          <line class="grid-line" x1="20" y1="240" x2="380" y2="240"/>
+          <line class="grid-line" x1="20" y1="300" x2="380" y2="300"/>
+          <line class="grid-line" x1="70" y1="20" x2="70" y2="330"/>
+          <line class="grid-line" x1="150" y1="20" x2="150" y2="330"/>
+          <line class="grid-line" x1="230" y1="20" x2="230" y2="330"/>
+          <line class="grid-line" x1="310" y1="20" x2="310" y2="330"/>
+        </g>
+        <!-- diagonal artery, like SG Highway -->
+        <line class="artery" x1="20" y1="330" x2="380" y2="30"/>
+
+        <!-- current flowing from EV node to charger node -->
+        <path class="current-path" d="M70,300 L70,180 L230,180 L230,60 L310,60"/>
+
+        <!-- EV node -->
+        <circle class="node-pulse" cx="70" cy="300" r="8"/>
+        <circle class="node" cx="70" cy="300" r="7"/>
+        <!-- charger node -->
+        <circle class="node-pulse" cx="310" cy="60" r="8"/>
+        <circle class="node" cx="310" cy="60" r="7"/>
+        <!-- other stations, static -->
+        <circle class="node" cx="230" cy="240" r="5"/>
+        <circle class="node" cx="150" cy="120" r="5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap grid-2">
+    <div class="card">
+      <div class="tag">Locator</div>
+      <h3>Find a charging point</h3>
+      <p>A running list of public EV charging stations across Ahmedabad — Vastrapur, Prahladnagar, Bopal, Chandkheda, Sola, and more — with area, network, and connector type.</p>
+      <a href="locator.html" class="btn btn-ghost">Open the map →</a>
+    </div>
+    <div class="card">
+      <div class="tag">Installation</div>
+      <h3>Get a charger installed</h3>
+      <p>Site assessment, load calculation, wiring, and commissioning for home and office AC chargers — handled by a local team, start to finish.</p>
+      <a href="installation.html" class="btn btn-ghost">See the process →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Why this exists</div>
+    <h2 class="section-title">Ahmedabad's EV charging network is real, but scattered</h2>
+    <p class="section-sub">Charging points are spread across several independent networks — Tata Power, Torrent Power, Statiq, ChargeZone, Adani, and others — each with its own app and listing. chargeme.in pulls the ones relevant to Ahmedabad into one place, and handles the side most people get stuck on: putting a charger at home.</p>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div>
+      <strong>chargeme.in</strong>
+      <div class="fine">EV charging locator &amp; installation services, Ahmedabad.</div>
+    </div>
+    <div>
+      <div>[Business address — fill in]</div>
+      <div>[Phone] · [email]</div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

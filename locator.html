@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find EV Charging Stations in Ahmedabad — chargeme.in</title>
+<meta name="description" content="Map and list of EV charging stations across Ahmedabad, by area and network.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <a href="index.html" class="logo">charge<span class="dot">&bull;</span>me</a>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="locator.html" class="active">Find a Charger</a>
+      <a href="installation.html">Home Installation</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  </nav>
+</header>
+
+<section style="padding-top:40px;">
+  <div class="wrap">
+    <div class="eyebrow">Locator</div>
+    <h2 class="section-title">EV charging stations in Ahmedabad</h2>
+    <p class="section-sub">Click a pin or a list item for details. Use the filters to narrow by connector type.</p>
+
+    <div class="filters" id="filters">
+      <button data-type="all" class="active">All</button>
+      <button data-type="AC">AC</button>
+      <button data-type="AC/DC">AC/DC</button>
+      <button data-type="DC Fast">DC Fast</button>
+    </div>
+
+    <div class="locator-layout">
+      <div class="station-list" id="station-list"></div>
+      <div id="map"></div>
+    </div>
+
+    <div class="callout" style="margin-top:20px;">
+      <strong>About this data:</strong> this is a starter list compiled from public network listings, not a live feed —
+      station status, exact address, and connector availability can change. Verify before relying on it for a trip.
+      Spot something wrong, or run a station we should add? <a href="contact.html" style="color:var(--current);">Tell us</a>.
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div>
+      <strong>chargeme.in</strong>
+      <div class="fine">EV charging locator &amp; installation services, Ahmedabad.</div>
+    </div>
+    <div>
+      <div>[Business address — fill in]</div>
+      <div>[Phone] · [email]</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/stations.js"></script>
+<script src="js/main.js"></script>
+<script>
+  const map = L.map('map', { scrollWheelZoom: false }).setView([23.04, 72.55], 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    maxZoom: 18
+  }).addTo(map);
+
+  const markers = [];
+  const listEl = document.getElementById('station-list');
+
+  function typeColor(t){
+    if (t === 'DC Fast') return '#4FD1C5';
+    if (t === 'AC/DC') return '#E3A857';
+    return '#EDE7DA';
+  }
+
+  function render(filter){
+    listEl.innerHTML = '';
+    markers.forEach(m => map.removeLayer(m.marker));
+    markers.length = 0;
+
+    STATIONS.filter(s => filter === 'all' || s.type === filter).forEach((s, i) => {
+      const marker = L.circleMarker([s.lat, s.lng], {
+        radius: 7, color: typeColor(s.type), fillColor: typeColor(s.type), fillOpacity: 0.85, weight: 2
+      }).addTo(map);
+      marker.bindPopup(`<strong>${s.name}</strong><br>${s.area} · ${s.network}<br>${s.type} · ${s.hours}`);
+      markers.push({ marker, station: s });
+
+      const item = document.createElement('div');
+      item.className = 'station-item';
+      item.innerHTML = `<h4>${s.name}</h4><div class="meta">${s.network} · ${s.type}</div><div class="addr">${s.area} · ${s.hours}</div>`;
+      item.addEventListener('click', () => {
+        map.setView([s.lat, s.lng], 15);
+        marker.openPopup();
+      });
+      listEl.appendChild(item);
+    });
+  }
+
+  document.querySelectorAll('#filters button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#filters button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render(btn.dataset.type);
+    });
+  });
+
+  render('all');
+</script>
+</body>
+</html>
